@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="googlebot" content="noindex, nofollow">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  
+
+  
+  
+  
+
+  
+
+  <script type="text/javascript" src="//d3js.org/d3.v3.js"></script>
+
+  
+
+  
+
+  
+
+  
+    <link rel="stylesheet" type="text/css" href="/css/result-light.css">
+  
+
+  
+
+  <style type="text/css">
+    svg{
+  width: 500px;
+  height: 500px;
+}
+div{
+background-color: white;  
+}
+
+  </style>
+
+  <title>Polllution by agosiewska</title>
+
+  
+    
+
+
+
+
+<script type='text/javascript'>//<![CDATA[
+window.onload=function(){
+var year2010 = [{"pollution":0, "deaths":0, "name": "poland"},
+{"pollution":0, "deaths":0, "name": "china"},
+{"pollution":0, "deaths":0, "name": "france"}]
+var year2011 = [{"pollution":1, "deaths":1, "name": "poland"},
+{"pollution":1, "deaths":1, "name": "china"},
+{"pollution":-1, "deaths":-1, "name": "france"}]
+
+
+var images = [{"id": 'url(#poland)'},{"id": 'url(#china)'},{"id": 'url(#france)'}]
+var changeScale = d3.scale.linear()
+	.domain([-5, 5])
+  .range([0, 500])
+  
+var svg = d3.select("g.linie")
+var circles = svg.selectAll("circle")
+	.data(year2010)
+  
+circles.enter().append("circle")
+  .attr("cx", function(d,i) {return changeScale(d.pollution)})
+  .attr("cy", function(d,i) {return changeScale(d.deaths)})
+  .attr("r", 20)
+  .attr('filter',function(d,i){return images[i].id})
+
+
+circles.data(year2011)
+circles.transition()
+	.duration(3000)
+  .attr("cx", function(d,i) {return changeScale(d.pollution)})
+  .attr("cy", function(d,i) {return changeScale(d.deaths)})
+  .attr("r", 20)
+
+}//]]> 
+
+</script>
+
+  
+</head>
+
+<body>
+  <div class="output">
+  <svg>
+    <filter id = "poland" x = "0%" y = "0%" width = "100%" height = "100%">
+      <feImage xlink:href = "https://upload.wikimedia.org/wikipedia/commons/8/86/Polandball.PNG"/>
+    </filter>
+        <filter id = "china" x = "0%" y = "0%" width = "100%" height = "100%">
+      <feImage xlink:href = "https://vignette.wikia.nocookie.net/polandball/images/e/e3/Chiny.png/revision/latest?cb=20160129171926&path-prefix=pl"/>
+    </filter>
+            <filter id = "france" x = "0%" y = "0%" width = "100%" height = "100%">
+      <feImage xlink:href = "https://vignette.wikia.nocookie.net/polandball/images/f/f2/Franceball.png/revision/latest?cb=20131028164608"/>
+    </filter>
+    <g class="osie">
+       <rect x =498 y=0 height=500 width=2></rect>
+       <rect x =0 y=498 height=2 width=500></rect>
+    </g>
+    <g class="linie">
+    </g>
+  </svg>
+</div>
+  
+  <script>
+  // tell the embed parent frame the height of the content
+  if (window.parent && window.parent.parent){
+    window.parent.parent.postMessage(["resultsFrame", {
+      height: document.body.getBoundingClientRect().height,
+      slug: "q1hu2dgy"
+    }], "*")
+  }
+</script>
+
+</body>
+
+</html>
+
